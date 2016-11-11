@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends IterativeRobot {
+	//Declare variables at the top-most scope so it can be used by all the functions in this class
 	TalonSRX talon;
 	Encoder encode;
 	Shooter shoot;
@@ -20,8 +21,8 @@ public class Robot extends IterativeRobot {
     	talon = new TalonSRX(3); //Arbitary ports, consult with your robot for your own
     	encode = new Encoder(1, 0); //^ See above comment
     	kick = new DoubleSolenoid(1,2); //Again ^^
-    	shoot = new Shooter(talon, encode,kick);
-    	bang = new BangBang(shoot);
+    	shoot = new Shooter(talon, encode,kick); //Init shooter
+    	bang = new BangBang(shoot); //Initalize bangbang control
     }
     public void autonomousInit() {
 
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
 
     }
     public void teleopPeriodic() {
+    	//This is where the magic occurs. The BangBang system runs periodically now during teleop
     	bang.update();
     }
     public void testPeriodic() {

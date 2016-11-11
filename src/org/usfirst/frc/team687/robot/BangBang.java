@@ -6,12 +6,12 @@ public class BangBang implements Loopable {
 	private double m_desiredRPM = 4000; //Random number, you'll have to test for the RPM that works best for you
 	private Shooter m_shoot;
 	/*
-	 * <b>Run this periodically</b>
+	 * Initialize control
 	 */
 	public BangBang(Shooter shooter){
 		m_shoot = shooter;
 	}
-	
+	// Main control all happens here
 	@Override
 	public void update() {
 		if(m_shoot.getRPM() < m_desiredRPM){

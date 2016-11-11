@@ -15,16 +15,18 @@ public class Shooter{
 		m_encode = shooterEncoder;
 		m_kick = kick;
 	}
+	//Calculate RPM using Java built in timer and Encoder class from WPILIB
 	double getRPM(){
 		double dt = (System.currentTimeMillis() - lastTime);
 		double lastTime = System.currentTimeMillis();
 		double currentTicks = m_encode.getRaw();
 		double rate = (currentTicks - lastTicks)/dt;
 		return (rate * 60 * 1000);	
-	}
+	}	
 	void setFlyPow(int in){
 		m_shoot.set(in);
 	}
+	//Deliver the push that sends game piece or whatever is on your wheels flying
 	void shoot(){
 		m_kick.set(DoubleSolenoid.Value.kForward);
 	}
